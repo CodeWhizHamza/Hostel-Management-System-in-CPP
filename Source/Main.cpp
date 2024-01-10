@@ -6,7 +6,6 @@
 
 
 // --------------------- Main Application ----------------------
-
 class HostelManagementSystemApplication  : public juce::JUCEApplication
 {
 public:
@@ -46,21 +45,20 @@ public:
     {
     public:
         MainWindow (juce::String name)
-            : DocumentWindow (name,
-                              juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                                          .findColour (juce::ResizableWindow::backgroundColourId),
-                              DocumentWindow::allButtons)
+            : DocumentWindow (
+                name,
+                juce::Desktop::getInstance()
+                    .getDefaultLookAndFeel()
+                    .findColour(juce::ResizableWindow::backgroundColourId),
+                DocumentWindow::allButtons
+        )
         {
-            setUsingNativeTitleBar (false);
+            setUsingNativeTitleBar (true);
             setContentOwned (new MainComponent(), true);
 
-           #if JUCE_IOS || JUCE_ANDROID
-            setFullScreen (true);
-           #else
             setResizable (true, true);
-            setFullScreen(true);
+            setFullScreen(false);
             centreWithSize (getWidth(), getHeight());
-           #endif
 
             setVisible (true);
         }
